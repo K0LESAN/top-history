@@ -1,0 +1,40 @@
+.select {
+  position: relative;
+  width: max-content;
+  margin-left: auto;
+  top: 20px;
+  right: 40px;
+  padding: 4px;
+  border: 1px solid black;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 240px;
+  overflow-y: auto;
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+.option {
+  width: 63px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 28px;
+  height: 20px;
+  object-fit: cover;
+}

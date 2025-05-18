@@ -1,0 +1,13 @@
+.option {
+  width: 63px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 28px;
+  height: 20px;
+  object-fit: cover;
+}
