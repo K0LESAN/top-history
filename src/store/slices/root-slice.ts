@@ -42,28 +42,29 @@ const rootSlice = createSlice({
     getSelectedCountry: (state) => state.selectedCountry,
   },
   extraReducers: (builder) => {
-    builder.addMatcher(
-      api.endpoints.getCountries.matchFulfilled,
-      (state, { payload }) => {
-        state.countries = payload.data;
+    builder
+      .addMatcher(
+        api.endpoints.getCountries.matchFulfilled,
+        (state, { payload }) => {
+          state.countries = payload.data;
 
-        if (!state.selectedCountry) {
-          state.selectedCountry = payload.data[0];
+          if (!state.selectedCountry) {
+            state.selectedCountry = payload.data[0];
+          }
         }
-      }
-    );
-    builder.addMatcher(
-      api.endpoints.getCategories.matchFulfilled,
-      (state, { payload }) => {
-        state.categories = payload.data;
-      }
-    );
-    builder.addMatcher(
-      api.endpoints.getTopHistory.matchFulfilled,
-      (state, { payload }) => {
-        state.topHistory = payload.data;
-      }
-    );
+      )
+      .addMatcher(
+        api.endpoints.getCategories.matchFulfilled,
+        (state, { payload }) => {
+          state.categories = payload.data;
+        }
+      )
+      .addMatcher(
+        api.endpoints.getTopHistory.matchFulfilled,
+        (state, { payload }) => {
+          state.topHistory = payload.data;
+        }
+      );
   },
 });
 
