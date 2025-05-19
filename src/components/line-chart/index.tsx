@@ -40,6 +40,7 @@ function LineChart() {
         <CountrySelect />
       </Container>
       <Line
+        data={data}
         options={{
           animation: {
             onComplete: ({ chart }) => {
@@ -59,7 +60,6 @@ function LineChart() {
             },
           },
         }}
-        data={data}
       />
     </>
   );

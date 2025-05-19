@@ -1,3 +1,4 @@
+import { subCategories } from '../../../constants';
 import { useAppSelector } from '../../../store/hooks';
 import { getCategories, getTopHistory } from '../../../store/slices/root-slice';
 import type { Datasets } from '../../../type';
@@ -21,10 +22,6 @@ export const useTopHistory = () => {
       for (const subCategoryId in topHistory[categoryId]) {
         const colorGenerator = createColorGenerator();
         const positions: number[] = [];
-        const formattedSubCategoryId = Number(subCategoryId);
-        const currentSubCategory = currentCategory?.categories?.find(
-          ({ id }) => id === formattedSubCategoryId
-        );
 
         for (const date in topHistory[categoryId][subCategoryId]) {
           const position = topHistory[categoryId][subCategoryId][date];
@@ -33,12 +30,11 @@ export const useTopHistory = () => {
           newLabels.add(date);
         }
 
-        if (currentCategory && currentSubCategory) {
+        if (currentCategory) {
           const { name: categoryName } = currentCategory;
-          const { name } = currentSubCategory;
 
           newDatasets.push({
-            label: `${categoryName} - ${name}`,
+            label: `${categoryName} - ${subCategories[subCategoryId]}`,
             data: positions,
             borderColor: colorGenerator(),
             backgroundColor: colorGenerator(0.5),

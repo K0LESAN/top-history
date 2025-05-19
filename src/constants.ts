@@ -8,7 +8,7 @@ const env = {
   API_QUERY_VALUE: import.meta.env.VITE_API_QUERY_VALUE,
 } as const;
 
-const subCategories = {
+const subCategories: Record<number, string> = {
   1: 'Top Free',
   2: 'Top Paid',
   3: 'Top Grossing',
