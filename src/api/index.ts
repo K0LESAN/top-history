@@ -3,10 +3,12 @@ import type { ApiData, HistoryQueryArgs } from './type';
 import type { Category, Country, TopHistory } from '../type';
 import { env } from '../constants';
 
+const baseUrl = env.PROD ? env.API_URL : document.location.origin;
+
 export const api = createApi({
   tagTypes: ['country', 'category', 'topHistory'],
   baseQuery: fetchBaseQuery({
-    baseUrl: document.location.origin,
+    baseUrl,
     credentials: 'include',
     mode: 'cors',
   }),
