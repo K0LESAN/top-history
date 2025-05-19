@@ -6,6 +6,7 @@ dotenv.config();
 
 export default defineConfig({
   plugins: [react()],
+  base: '/top-history',
   server: {
     cors: true,
     port: Number(process.env.API_PORT),
