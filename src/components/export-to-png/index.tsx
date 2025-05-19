@@ -1,5 +1,9 @@
 import { useAppSelector } from '../../store/hooks';
-import { getSelectedCountry } from '../../store/slices/root.slice';
+import {
+  getDateFrom,
+  getDateTo,
+  getSelectedCountry,
+} from '../../store/slices/root.slice';
 
 interface ExportToPNGProps {
   base64Image: string;
@@ -7,7 +11,9 @@ interface ExportToPNGProps {
 
 function ExportToPNG({ base64Image }: ExportToPNGProps) {
   const selectedCountry = useAppSelector(getSelectedCountry);
-  const filename = `${selectedCountry?.name}.png`;
+  const dateFrom = useAppSelector(getDateFrom);
+  const dateTo = useAppSelector(getDateTo);
+  const filename = `${selectedCountry?.name}_${dateFrom}_${dateTo}.png`;
 
   return (
     <a href={base64Image} download={filename}>

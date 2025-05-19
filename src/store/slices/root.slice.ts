@@ -7,12 +7,16 @@ interface RootState {
   categories: Category[];
   topHistory: TopHistory;
   selectedCountry?: Country;
+  dateFrom: string;
+  dateTo: string;
 }
 
 const initialState: RootState = {
   countries: [],
   categories: [],
   topHistory: {},
+  dateFrom: '',
+  dateTo: '',
 };
 
 const rootSlice = createSlice({
@@ -34,12 +38,20 @@ const rootSlice = createSlice({
     ) => {
       state.selectedCountry = payload;
     },
+    setDateFrom: (state, { payload }: PayloadAction<string>) => {
+      state.dateFrom = payload;
+    },
+    setDateTo: (state, { payload }: PayloadAction<string>) => {
+      state.dateTo = payload;
+    },
   },
   selectors: {
     getCountries: (state) => state.countries,
     getCategories: (state) => state.categories,
     getTopHistory: (state) => state.topHistory,
     getSelectedCountry: (state) => state.selectedCountry,
+    getDateFrom: (state) => state.dateFrom,
+    getDateTo: (state) => state.dateTo,
   },
   extraReducers: (builder) => {
     builder
@@ -61,8 +73,10 @@ const rootSlice = createSlice({
       )
       .addMatcher(
         api.endpoints.getTopHistory.matchFulfilled,
-        (state, { payload }) => {
+        (state, { payload, meta }) => {
           state.topHistory = payload.data;
+          state.dateFrom = meta.arg.originalArgs.dateFrom;
+          state.dateTo = meta.arg.originalArgs.dateTo;
         }
       );
   },
@@ -74,10 +88,14 @@ export const {
   getCountries,
   getTopHistory,
   getSelectedCountry,
+  getDateFrom,
+  getDateTo,
 } = rootSlice.selectors;
 export const {
   setCountries,
   setCategories,
   setTopHistory,
   setSelectedCountry,
+  setDateFrom,
+  setDateTo,
 } = rootSlice.actions;

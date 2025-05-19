@@ -1,12 +1,18 @@
 import { useAppSelector } from '../../store/hooks';
-import { getSelectedCountry } from '../../store/slices/root.slice';
+import {
+  getDateFrom,
+  getDateTo,
+  getSelectedCountry,
+} from '../../store/slices/root.slice';
 import type { ExportToCSVProps } from './type';
 import { convertChartDataToCSV } from './utils/convert-chart-data-to-csv';
 import { useMemo } from 'react';
 
 function ExportToCSV({ datasets, labels }: ExportToCSVProps) {
   const selectedCountry = useAppSelector(getSelectedCountry);
-  const filename = `${selectedCountry?.name}.csv`;
+  const dateFrom = useAppSelector(getDateFrom);
+  const dateTo = useAppSelector(getDateTo);
+  const filename = `${selectedCountry?.name}_${dateFrom}_${dateTo}.csv`;
   const href = useMemo(() => {
     const csvData = datasets.map((dataset) =>
       convertChartDataToCSV(dataset, labels)
