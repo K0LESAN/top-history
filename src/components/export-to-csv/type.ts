@@ -1,12 +1,8 @@
-import type { ChartData } from 'chart.js';
-
-type Data = ChartData<'line', string>;
-type Datasets = Data['datasets'];
-type Labels = Data['labels'];
+import type { Datasets, Labels } from '../../type';
 
 interface ExportToCSVProps {
   datasets: Datasets;
   labels: Labels;
 }
 
-export type { Data, Datasets, Labels, ExportToCSVProps };
+export type { ExportToCSVProps };

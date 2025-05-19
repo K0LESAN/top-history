@@ -1,3 +1,5 @@
+import type { ChartData } from 'chart.js';
+
 interface Country {
   id: number;
   country: string;
@@ -20,4 +22,16 @@ interface Category extends CategoryItem {
 
 type TopHistory = Record<number, Record<number, Record<number, number>>>;
 
-export type { Country, Category, CategoryItem, TopHistory };
+type Data = ChartData<'line', number[]>;
+type Datasets = Data['datasets'];
+type Labels = Data['labels'];
+
+export type {
+  Country,
+  Category,
+  CategoryItem,
+  TopHistory,
+  Data,
+  Datasets,
+  Labels,
+};

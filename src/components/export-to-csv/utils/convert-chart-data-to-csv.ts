@@ -1,14 +1,12 @@
-import type { ChartData } from 'chart.js';
-
-type Data = ChartData<'line', string>;
+import type { Datasets, Labels } from '../../../type';
 
 export function convertChartDataToCSV(
-  dataset: Data['datasets'][number],
-  labels: Data['labels'] = []
+  dataset: Datasets[number],
+  labels: Labels = []
 ) {
   const { data, label } = dataset;
   const joinedLabels = labels.join(',');
-  const result: string[] = [`${joinedLabels}\n${label}`];
+  const result: (string | number)[] = [`${joinedLabels}\n${label}`];
 
   for (const dataItem of data) {
     result.push(dataItem);

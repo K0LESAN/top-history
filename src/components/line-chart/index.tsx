@@ -31,8 +31,8 @@ Chart.register(
 
 function LineChart() {
   const selectedCountry = useAppSelector(getSelectedCountry);
-  const data = useTopHistory();
   const [base64Image, setBase64Image] = useState('');
+  const data = useTopHistory();
 
   useGetTopHistoryQuery(
     {
@@ -49,16 +49,8 @@ function LineChart() {
   return (
     <>
       <Container>
-        {ref.current && (
-          <>
-            <ExportToCSV
-              // @ts-expect-error correct type
-              datasets={data.datasets}
-              labels={data.labels}
-            />
-            <ExportToPNG base64Image={base64Image} />
-          </>
-        )}
+        <ExportToCSV {...data} />
+        <ExportToPNG base64Image={base64Image} />
         <CountrySelect />
       </Container>
       <Line
