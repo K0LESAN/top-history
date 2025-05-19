@@ -1,6 +1,6 @@
 import { subCategories } from '../../../constants';
 import { useAppSelector } from '../../../store/hooks';
-import { getCategories, getTopHistory } from '../../../store/slices/root-slice';
+import { getCategories, getTopHistory } from '../../../store/slices/root.slice';
 import type { Datasets } from '../../../type';
 import { createColorGenerator } from '../../../utils/create-color-generator';
 import { useMemo } from 'react';

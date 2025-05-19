@@ -8,7 +8,7 @@ import { useAppSelector } from '../../store/hooks';
 import {
   getCountries,
   getSelectedCountry,
-} from '../../store/slices/root-slice';
+} from '../../store/slices/root.slice';
 import styles from './index.module.css';
 import CountryOption from '../country-option';
 

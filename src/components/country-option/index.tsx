@@ -1,6 +1,6 @@
 import { useCallback, type MouseEventHandler } from 'react';
 import { useAppDispatch } from '../../store/hooks';
-import { setSelectedCountry } from '../../store/slices/root-slice';
+import { setSelectedCountry } from '../../store/slices/root.slice';
 import type { Country } from '../../type';
 import styles from './index.module.css';
 

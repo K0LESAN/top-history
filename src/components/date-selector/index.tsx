@@ -1,7 +1,7 @@
 import { useCallback, useState, type ChangeEventHandler } from 'react';
 import { useGetTopHistoryQuery } from '../../api';
 import { useAppSelector } from '../../store/hooks';
-import { getSelectedCountry } from '../../store/slices/root-slice';
+import { getSelectedCountry } from '../../store/slices/root.slice';
 
 const formatDate = (date: Date) => date.toISOString().replace(/T.*/, '');
 

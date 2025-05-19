@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../store/hooks';
-import { getSelectedCountry } from '../../store/slices/root-slice';
+import { getSelectedCountry } from '../../store/slices/root.slice';
 import type { ExportToCSVProps } from './type';
 import { convertChartDataToCSV } from './utils/convert-chart-data-to-csv';
 import { useMemo } from 'react';

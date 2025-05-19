@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../store/hooks';
-import { getSelectedCountry } from '../../store/slices/root-slice';
+import { getSelectedCountry } from '../../store/slices/root.slice';
 
 interface ExportToPNGProps {
   base64Image: string;
