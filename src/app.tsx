@@ -1,6 +1,7 @@
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { useGetCategoriesQuery, useGetCountriesQuery } from './api';
-import LineChart from './components/line-chart';
+
+const LineChart = lazy(() => import('./components/line-chart'));
 
 function App() {
   useGetCountriesQuery();
