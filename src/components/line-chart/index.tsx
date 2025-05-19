@@ -12,11 +12,12 @@ import { Line } from 'react-chartjs-2';
 import { useAppSelector } from '../../store/hooks';
 import { getSelectedCountry } from '../../store/slices/root-slice';
 import { useGetTopHistoryQuery } from '../../api';
-import { useRef } from 'react';
+import { useState } from 'react';
 import Container from '../container';
 import ExportToCSV from '../export-to-csv';
 import { useTopHistory } from './hooks/use-top-history';
 import CountrySelect from '../country-select';
+import ExportToPNG from '../export-to-png';
 
 Chart.register(
   CategoryScale,
@@ -30,8 +31,8 @@ Chart.register(
 
 function LineChart() {
   const selectedCountry = useAppSelector(getSelectedCountry);
-  const ref = useRef<Chart>(undefined);
   const data = useTopHistory();
+  const [base64Image, setBase64Image] = useState('');
 
   useGetTopHistoryQuery(
     {
@@ -49,19 +50,24 @@ function LineChart() {
     <>
       <Container>
         {ref.current && (
-          <ExportToCSV
-            // @ts-expect-error correct type
-            datasets={ref.current.data.datasets}
-            labels={ref.current.data.labels}
-          />
+          <>
+            <ExportToCSV
+              // @ts-expect-error correct type
+              datasets={data.datasets}
+              labels={data.labels}
+            />
+            <ExportToPNG base64Image={base64Image} />
+          </>
         )}
         <CountrySelect />
       </Container>
       <Line
-        // @ts-expect-error correct type
-        ref={ref}
-        datasetIdKey={'top-history-line-chart'}
         options={{
+          animation: {
+            onComplete: ({ chart }) => {
+              setBase64Image(chart.toBase64Image('image/png', 1));
+            },
+          },
           responsive: true,
           plugins: {
             title: {
