@@ -9,15 +9,13 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { useAppSelector } from '../../store/hooks';
-import { getSelectedCountry } from '../../store/slices/root-slice';
-import { useGetTopHistoryQuery } from '../../api';
 import { useState } from 'react';
 import Container from '../container';
 import ExportToCSV from '../export-to-csv';
 import { useTopHistory } from './hooks/use-top-history';
 import CountrySelect from '../country-select';
 import ExportToPNG from '../export-to-png';
+import DateSelector from '../date-selector';
 
 Chart.register(
   CategoryScale,
@@ -30,27 +28,15 @@ Chart.register(
 );
 
 function LineChart() {
-  const selectedCountry = useAppSelector(getSelectedCountry);
   const [base64Image, setBase64Image] = useState('');
   const data = useTopHistory();
-
-  useGetTopHistoryQuery(
-    {
-      countryId: selectedCountry?.id ?? 0,
-      dateFrom: '2025-04-19',
-      dateTo: '2025-05-17',
-    },
-    {
-      skip: !selectedCountry,
-      refetchOnMountOrArgChange: true,
-    }
-  );
 
   return (
     <>
       <Container>
         <ExportToCSV {...data} />
         <ExportToPNG base64Image={base64Image} />
+        <DateSelector />
         <CountrySelect />
       </Container>
       <Line
