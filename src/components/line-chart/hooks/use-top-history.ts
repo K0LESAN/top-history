@@ -2,7 +2,7 @@ import type { Line } from 'react-chartjs-2';
 import { useAppSelector } from '../../../store/hooks';
 import { getCategories, getTopHistory } from '../../../store/slices/root-slice';
 import { createColorGenerator } from '../../../utils/create-color-generator';
-import { useEffect, useState } from 'react';
+import { useMemo } from 'react';
 
 type LineProps = Parameters<typeof Line>[0];
 
@@ -10,11 +10,10 @@ type Data = LineProps['data'];
 type Datasets = Data['datasets'];
 
 export const useTopHistory = () => {
-  const [data, setData] = useState<Data>({ datasets: [] });
   const categories = useAppSelector(getCategories);
   const topHistory = useAppSelector(getTopHistory);
 
-  useEffect(() => {
+  return useMemo(() => {
     const newLabels: Set<string> = new Set();
     const newDatasets: Datasets = [];
 
@@ -57,11 +56,9 @@ export const useTopHistory = () => {
       (a, b) => new Date(a).getTime() - new Date(b).getTime()
     );
 
-    setData({
+    return {
       labels: formattedLabels,
       datasets: newDatasets,
-    });
+    };
   }, [categories, topHistory]);
-
-  return data;
 };
