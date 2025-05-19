@@ -2,8 +2,8 @@ import { useCallback, useState, type ChangeEventHandler } from 'react';
 import { useGetTopHistoryQuery } from '../../api';
 import { useAppSelector } from '../../store/hooks';
 import { getSelectedCountry } from '../../store/slices/root.slice';
-
-const formatDate = (date: Date) => date.toISOString().replace(/T.*/, '');
+import { formatDate } from '../../utils/format-date';
+import AdaptiveWrapper from '../adaptive-wrapper';
 
 function DateSelector() {
   const selectedCountry = useAppSelector(getSelectedCountry);
@@ -37,10 +37,10 @@ function DateSelector() {
   );
 
   return (
-    <>
+    <AdaptiveWrapper>
       <input type='date' value={dateFrom} onChange={changeDateFromHandler} />
       <input type='date' value={dateTo} onChange={changeDateToHandler} />
-    </>
+    </AdaptiveWrapper>
   );
 }
 

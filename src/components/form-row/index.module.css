@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 16px;
+}
+
+@media screen and (max-width: 540px) {
+  .row {
+    align-items: start;
+    justify-content: center;
+  }
+}
