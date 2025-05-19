@@ -1,0 +1,1 @@
+[Deploy](https://k0lesan.github.io/top-history)
