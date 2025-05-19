@@ -1,9 +1,6 @@
 .select {
   position: relative;
   width: max-content;
-  margin-left: auto;
-  top: 20px;
-  right: 40px;
   padding: 4px;
   border: 1px solid black;
 }

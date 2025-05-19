@@ -1,15 +1,15 @@
-import type { Category, Country, TopHistory } from '../../type';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { Category, Country, TopHistory } from '../../type';
 import { api } from '../../api';
 
-interface RootSlice {
+interface RootState {
   countries: Country[];
   categories: Category[];
   topHistory: TopHistory;
   selectedCountry?: Country;
 }
 
-const initialState: RootSlice = {
+const initialState: RootState = {
   countries: [],
   categories: [],
   topHistory: {},
